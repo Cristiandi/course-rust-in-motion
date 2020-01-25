@@ -44,4 +44,8 @@ path = "src/match-demo-02.rs"
 name = "enum-demo"
 path = "src/enum-demo.rs"
 
+[[bin]]
+name = "struct-demo"
+path = "src/struct-demo.rs"
+
 [dependencies]

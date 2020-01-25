@@ -1,0 +1,19 @@
+-----------------------
+VIDEO 7 -> Structs
+-----------------------
+Structs son tipos personalizados, como por ejemplo todos los atributos de jugador de hockey, describir un jugador de
+hockey utilizando un struct es mejor que describirlo utilizando un enum, debido a que no se esta eligiendo entre tipos
+diferentes de jugadores de hockey.
+enum se utilizan cuando se quiere describir una elección entre un set de valores, como por ejemplo escoger un banano,
+manzana o naranja, un struct se utiliza cuando se quiere tener los mismos atributos para todos los valores de ese tipo
+de struct, como po ejemplo multiples recetas que tienen una lista de ingredientes y una lista de indicaciones.
+
+las tuple strucs son útiles para crear tipos que se consideran diferentes de una tupla simple u otras estructuras
+de tupla en lo que respecta al verificador de tipos de Rust.
+
+con las Structs no se pueden mezclar / operar con otro tipo de dato.
+
+hay structs, tuple structs y unit structs.
+
+Las estructuras en realidad no necesitan tener ningún campo. Las estructuras sin campos se denominan estructuras de unidad. 
+las estructuras de unidad todavía no parecen muy útiles, pero puede definir métodos en ellas.
