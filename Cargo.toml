@@ -1,0 +1,47 @@
+[package]
+name = "myproject"
+version = "0.1.0"
+authors = ["Cristian David Ippolito Carrillo <cristiandavidippolito@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# Here's an example of a TOML "array of tables" section, in this case specifying
+# a binary target name and path.
+[[bin]]
+name = "fn-01-birthday"
+path = "src/fn-01-birthday.rs"
+
+[[bin]]
+name = "fn-02-square"
+path = "src/fn-02-square.rs"
+
+[[bin]]
+name = "fn-03-discount"
+path = "src/fn-03-discount.rs"
+
+[[bin]]
+name = "loop-demo"
+path = "src/loop-demo.rs"
+
+[[bin]]
+name = "while-demo"
+path = "src/while-demo.rs"
+
+[[bin]]
+name = "for-demo"
+path = "src/for-demo.rs"
+
+[[bin]]
+name = "match-demo"
+path = "src/match-demo.rs"
+
+[[bin]]
+name = "match-demo-02"
+path = "src/match-demo-02.rs"
+
+[[bin]]
+name = "enum-demo"
+path = "src/enum-demo.rs"
+
+[dependencies]

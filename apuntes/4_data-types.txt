@@ -1,0 +1,87 @@
+--------------------
+VIDEO 4 -> Primitive Data types
+--------------------
+- los tipos de datos basicos / simples proveidos por el core de RUST son:
+	*Boolean
+	*Integer
+	*Floating point
+	*Character
+- los tipos de datos compuestos mismo son:
+	*Tuple
+  *Array
+  *Slice
+- Boolean son llamados bool in RUST.
+- Integer, lo numeros sin un punto decimal, son llamados integers in RUST, hay dos tipos de enteros en RUST, los que tienen
+signo y los que no, además uno debe decidir cuanto espacio va a utilizar la variable tipo integer, lo cual afecta el
+que puede almacenar.
+con signo y sin signo:
+	i8	u8
+	i16	u16
+	i32 u32
+	i64 u64
+por ejemplo i8 toma 8 bits de información uno de esos bits es utilizado para guardar cuando un número es positivo o 
+negativo, esto significa que con i8 se pueden almacenar valores desde el -128 al 127
+si el numero que se quiere almacenar solo puede ser 0 o mayor que 0 se utiliza el tipo sin signo u8, debido a que este
+tipo no utiliza ningún bit para almacenar el signo el rango de números que se pueden almacenar con el cambia, de 0 a 255.
+El tipo isize y el usize de los enteros depende del tipo de arquitectura, si se esta en un una maquina de 32bits ocuparan 
+32bits de espacio, pero si se esta en una arquitectura de 64bits, ocuparan 64bits de espacio.
+se utiliza usize o isize para indexar colecciones (arreglos, objectos, tuplas, etc) o contar items, ejemplo:
+	> let a = [100, 200, 300];
+	> bel b = a[0];
+el 0 utilizado en el ejemplo tiene el tipo usize.
+Si RUST no tiene una información del tipo de entero que se va a utilizar, si se escribe un valor sin punto decimal,
+RUST utilizara i32 por defecto.
+- Floating point, son aquellos números con un punto decimal, al igual que los integers, estos vienen en diferentes tipos
+f32 y f64 utilizando 32 y 64 bits respectivamente.
+el tipo por defecto de un Floating point is f64, el cual ofrece mayor precisión que un f32, operar con números decimales
+en computación puede llegar a ser complicado. https://floating-point-gui.de/
+- Character, es el tipo de dato que se utiliza RUST y se conoce como char almacenar un solo caracter, char es un valor 
+escalar unicode, por lo cual puede contener más que solo valores ASCII, esto quiere decir que un char puede no contener
+el valor de un Character esperado por un humano, los Characters son escritos usando comillas simples (''), no se deben
+confundir con los strings lo cuales utilizan comillan dobles (""), ejemplo:
+	> let c = 'a';
+	> let d = '«';
+- Tuples, permiten agrupar varios valores juntos utilizando parentheses, estos valores no tiene que ser del mismo tipo
+ejemplo:
+	> let tup = (1, 'c', true);
+para obtener cada uno de los items de una tupla se utiliza el indice de la tupla, comenzando desde 0, ejemplo:
+	> fn main() {
+  >  	let tup = (1, 'c', true);
+  >  	let first = tup.0;
+  >  	let second = tup.1;
+	>
+  >  	println!("the first is {}", first);
+  >  	println!("the second is {}", second);
+	>	}
+para 	partir la tupla en partes, se puede utilizar destructuring:
+	> let tup = (1, 'c', true);
+	> let (x, y, z) = tup;
+- Arrays, en RUST son colleciones donde todos los elementos tienen el mismo tipo, se puede acceder a cada valor de un 
+arreglo, utilizando corchetes y su indice, el cual tambien comienza en 0, ejemplo:
+  ```
+  fn main() {
+      let a = [0.0, 3.14, -8.7928];
+      let second = a[1];
+
+      println!("the second is {}", second);
+  }
+  ```
+se puede tambien modificar un arreglo utilizando la palabra reservada mut, los corchetes y el indice del arreglo, ejemplo:
+  ```
+  fn main() {
+    let mut b = [7.2, 10.4, 345.01];
+    b[0] = 0.0;
+
+    println!("altered b is {:?}", b);
+  }
+  ```
+los arreglos en RUST tienen un tamaño fijo, el cual se setea cuando estos se inicializan, por lo cual no es posible añadir
+una nueva posición al arreglo, aunque este este declarado como mutable, si lo que se necesita es una secuencia de valores
+que cambie su tamaño se puede utilizar Vec un tipo de dato proveido por la libreria estandar.
+
+- Slice, son un tipo de dato compuesto en RUST que permiten hacer referencia a un subconjunto continuo de datos en otra
+estructura de datos, ejemplo:
+  > let a = [100, 200, 300];
+  > let b = &a[0..1];
+un tipo especifico de Slice es el string slice escrito `& str` String literals son una manera comun de crear Slices.
+

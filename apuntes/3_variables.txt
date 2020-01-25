@@ -1,0 +1,20 @@
+--------------------
+VIDEO 3 -> Variables
+--------------------
+- para declarar una variable se utiliza la palabra reservada let, de esta manera:
+	> let x = 5;
+	
+- la funcion main, es una funcion especial es el punto de entrada de los programas binarios, es la función invocada cuando ejecutamos 'cargo run'.
+- la funcion println! es como uno imprime en rust, el primer argumento es la cadena de formato y las llaves en esa cadena de formato son marcadores de posición para los valores 
+que queremos imprimir, que se especifican como el resto de los argumentos.
+- las variables en rust por defecto no pueden variar, la razón es que si las variables por defecto no se puede mutar, esto ayuda a prevenir bugs. los bugs puede ocurrir cuando, 
+por ejemplo uno asume / setea el valor de una variable, pero en otra parte del programa este valor para la variable puede cambiar y rompe suposición.
+- hacer explícita la mutabilidad de las variables previene errores al comunicar si un valor puede cambiar o no
+- la manera para hacer una variable mutable es poner la palabra reservada mut despues de let, de esta manera:
+	> let mut x = 5;
+- la ultima gran diferencia entre las variables en Rust y otros lenguajes de programación, es que en Rust cada variable tiene un tipo.
+- si se quiere anotar el tipo de la variable se puede hacer de la siguiete manera:
+	> let mut x: i32 = 5;
+- un truco para darse cuenta el tipo de una variable que regularmente uno no darle un tipo que seguramente no es, por ejemplo:
+	> let x : i32 = false;
+	el compilador inmediatamente va a reventar e indicar el tipo de la variable.

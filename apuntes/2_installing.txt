@@ -1,0 +1,15 @@
+---------------------
+VIDEO 2 -> Installing
+---------------------
+- para crear una "caja binaria" ejecutar:
+	$ cargo new --bin <projectName>
+- para crear una "cajas de libreria" la cuales estan destinadas a ser utilizadas desde otros proyectos ejecutar:
+	$ carno new --lib <projectName>
+- para compilar el codigo, en el directorio del proyecto ejectuar:
+	$ cargo build
+- si se quiere analizar el rendimiento del tiempo de ejeción se debe ejecutar:
+	$ cargo build --relese
+- si se quiere compilar y ejecutar el código luego de ello, común en desarrollo se debe ejecutar:
+	$ cargo run
+- se se desea acceder a la documentación de la instalación, se debe ejecutar:
+	$ rustup doc

@@ -1,0 +1,30 @@
+-----------------------
+VIDEO 7 -> Enums
+-----------------------
+Los enums o enumeraciones son la manera que se tiene para expresar que un valor puede uno de un set finito de valores, 
+los enums son una manera de crear custom types en Rust, adicionalmente en Rust las variantes de los enums pueden 
+almacenar data / información adicional, a diferencia de JAVA o C, ejemplo de implementación de enums:
+  ```
+  enum Clock {
+    Sundial(u8),
+    Digital(u8, u8),
+    Analog(u8, u8, u8),
+  }
+
+  fn tell_time(clock: Clock) {
+    match clock {
+      Clock::Sundial(hours) => 
+        println!("It is about {} o'clock.", hours),
+      Clock::Digital(hours, minutes) =>
+        println!("It is {} minutes pass {}.", minutes, hours),
+      Clock::Analog(hours, minutes, seconds) =>
+        println!("It is {} minutes and {} seconds past {} o'clock.", hours, minutes, seconds)
+    }
+  }
+
+  fn main () {
+    tell_time(Clock::Sundial(10));
+    tell_time(Clock::Digital(9, 4));
+    tell_time(Clock::Analog(10, 14, 54));
+  }
+  ```

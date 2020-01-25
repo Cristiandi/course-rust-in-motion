@@ -1,0 +1,130 @@
+-----------------------
+VIDEO 6 -> Control flow
+-----------------------
+las expresiones / palabras reservadas que ayudan en RUST a controlar el flujo, como en otros lenguajes son if, else if, 
+else, while, for, pero a estos se le agrega loop y match.
+- escribir codigo que implique evaluar una condición, por ejemplo para un if, no se hace necesario implementar los
+parentesis para incluir la condición, de esta manera:
+  ```
+  let b = 0;
+  if b == 0 {
+    println!("b is 0");
+  } else {
+    println!("b isn't 0");
+  }
+  ```
+además se puede almancenar el resultado de un if en variable, teniendo en cuenta que simepre se debe retornar el mismo
+data type y siempre debe tener un else, ejemplo:
+  ```
+  fn discount(day_of_month: u8) {
+    let amount = if day_of_month % 2 == 0 {
+      50
+    } else {
+      10
+    };
+
+    println!("your discount is {}", amount);
+  }
+
+  fn main() {
+    discount(10);
+  }
+  ```
+  - loop, la palabra reservada loop permite especificar que un bloque de codigo se ejecute repetidamente, hasta salirse del 
+  loop utilizando la palabra reservada break, ejemplo:
+  ```
+  use std::io;
+
+  fn main() {
+    loop {
+      println!("what's the secret word?");
+      let mut word = String::new();
+      io::stdin().read_line(&mut word).expect("falied to read line");
+
+      if word.trim() == "rust" {
+        break;
+      }
+    }
+
+    println!("well donde! You have the secret word.");
+  }
+  ```
+- while
+ejemplo while:
+  ```
+  use std::io;
+
+  fn main() {
+    let mut word = String::new();
+
+    while word.trim() != "rust" {
+      println!("what's the secret word?");
+      word = String::new();
+      io::stdin().read_line(&mut word).expect("falied to read line");
+    }
+
+    println!("well donde! You have the secret word.");
+  }
+  ```
+- for, el ciclo for es problamente el ciclo más utilizado en RUST, este permite ejecutar cierto codigo por cada item en
+una coleccion, en RUST no es necesario manejar el indice el ciclo o preocuparse por off-by-one errores, ejemplo:
+  ```
+  fn main() {
+    for i in 1..11 {
+      println!("nor iterating the number {}", i);
+    }
+  }
+  ```
+en este ejemplo se esta utilizando la sintaxys de rango (..) para crear un rango de dos entegeros comenzando desde el 1
+y terminando antes del 11.
+- match, no es algo que muchos lenguajes tengan, es algo así como un monton de if / else if o una lista grande de switch 
+case, pero mejor por el "parttern matching" y "exhaustiveness checking".
+parttern matching es especialmente util en expresione match, ejemplo match:
+  ```
+  fn main() {
+    let die1 = 1;
+    let die2 = 5;
+
+    match (die1, die2) {
+      (1, 1) => println!("snake eyes, go back to the be beginning."),
+      (5, _) | (_, 5) => {
+        println!("you rolled al least one 5!");
+        println!("move and then roll againg!")
+      },
+      _ => println!("move you piece!")
+    }
+  }
+  ```
+en anterior ejemplo hay varias cosas interasantes, la primera de ellas es que para el camino default o en el que ninguna
+condicion se cumple se emplea el underscore (_), igualmente para los casos en los cuales no es relevante un valor para 
+alguno de los valores evaluados, por ejemplo en el 2 caso, donde solo es relevante que alguno de los 2 dados almacene
+el valor 5, la barra vertial o el pip (|) significa "or".
+la otra razon de porque match es asombroso es porque debe de ser exaustivo y cubrir todos lo casos, esto previene bugs 
+que pueden ocurrir cuando se olvida manejar / controlar algun caso, ejemplo:
+  ```
+  fn main() {
+    let is_confirmed = true;
+    let is_active = false;
+
+    match (is_confirmed, is_active) {
+      (true, true) => println!("this account is in good standing."),
+      (false, true) => println!("need to confirm your account!"),
+      (false, false) => println!("this account will be desactivated.")
+    }
+  }
+  ```
+el anterior codigo a nivel de compilador me generaria un error indicando que faltan casos por controlar en la
+convinacion de variables, en este caso falta (true, false), esto se puede resolver de la siguienta manera:
+  ```
+  fn main() {
+    let is_confirmed = true;
+    let is_active = false;
+
+    match (is_confirmed, is_active) {
+      (true, true) => println!("this account is in good standing."),
+      (false, true) => println!("need to confirm your account!"),
+      (false, false) => println!("this account will be desactivated."),
+      _ => {}
+    }
+  }
+  ```
