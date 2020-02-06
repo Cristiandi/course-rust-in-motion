@@ -1,0 +1,153 @@
+------------------
+VIDEO 9 -> Methods
+------------------
+Los structs y enums son utilizados para definir data custom types, los methods son utilizados para definir
+comportamientos en esos data custom types, los methods son similares a las funciones.
+Los methods son definidos con la palabra reservada impl, una gran diferencia entre los metodos y las funciones es que
+los metodos siempre recibe como primer parametro self el cual se refiere al data custom type en el que se este
+definiendo el method, ejemplo:
+  ```
+  // Same definition as in module 7
+  enum HockeyPosition {
+      Center,
+      Wing,
+      Defense,
+      Goalie,
+  }
+
+  struct HockeyPlayer {
+      name: String,
+      number: u8,
+      position: HockeyPosition,
+      goals_ytd: u8,
+  }
+
+  // defining the method
+  impl HockeyPlayer {
+      // big difference fn vs mt
+      fn shoot_puck(self, seconds_remaining: u16) {
+          if seconds_remaining < 300 {
+              match self.position {
+                  HockeyPosition::Center => println!("Goal!"),
+                  _ => println!("Miss!"),
+              }
+          } else {
+              println!("Goal!");
+          }
+      }
+  }
+
+  fn main() {
+      let player = HockeyPlayer {
+          name: String::from("Bryan Rust"),
+          number: 17,
+          position: HockeyPosition::Wing,
+          goals_ytd: 7,
+      };
+
+      player.shoot_puck(1000);
+  }
+  ```
+como se puede observar en el script, al crear la variable player de tipo HockeyPlayer esta ya tiene en su comportamiento
+el method shoot_puck y ademas al llamarlo, no es necesario enviarle un argumento que hata referencia al perametro self.
+
+Associated Functions
+estas funciones tambien se definen utilizando la palabra reservada impl dentro de un enum o un struct, pero a diferencia
+de los metodos, estas funciones no reciben self como parametro, ademas son comunmente utilizadas para utilizar instancias
+de tipo, es importante tener en cuenta que new no es un nombre de función especial en Rust como en lenguajes como JAVA,
+pero por convención, muchos tipos de Rust definen una función asociada llamada new que crea nuevas instancias de ese tipo,
+ejemplo:
+  ```
+  enum HockeyPosition {
+    Center,
+    Wing,
+    Defense,
+    Goalie,
+  }
+
+  struct HockeyPlayer {
+      name: String,
+      number: u8,
+      position: HockeyPosition,
+      goals_ytd: u8,
+  }
+
+  impl HockeyPlayer {
+      fn new(name: String, number: u8, position: HockeyPosition) -> HockeyPlayer {
+          HockeyPlayer {
+              name: name,
+              number: number,
+              position: position,
+              goals_ytd: 0,
+          }
+      }
+  }
+
+  fn main() {
+      let mut player = HockeyPlayer::new(
+          String::from("Bryan Rust"),
+          17,
+          HockeyPosition::Wing,
+      );
+  }
+  ```
+como se puede observar en el fragmento de codigo la Associated Function se utiliza para crear una instancia del tipo
+HockeyPlayer.
+
+Si dentro de un struct se tiene un method y este se desea llamar en repetidas ocaciones entonces como primer parametro
+se le debe enviar &self y si se desea alterar alguna propiedad del struct se envia como primer parametro "&mut self" 
+por ejemplo:
+
+```
+enum HockeyPosition {
+    Center,
+    Wing,
+    Defense,
+    Goalie,
+}
+
+struct HockeyPlayer {
+    name: String,
+    number: u8,
+    position: HockeyPosition,
+    goals_ytd: u8,
+}
+
+impl HockeyPlayer {
+    fn shoot_puck(&mut self, seconds_remaining: u16) {
+        if seconds_remaining < 300 {
+            match self.position {
+                HockeyPosition::Center => {
+                    self.goals_ytd += 1;
+                    println!("Goal!");
+                },
+                _ => println!("Miss!"),
+            }
+        } else {
+            self.goals_ytd += 1;
+            println!("Goal!");
+        }
+    }
+}
+
+fn main() {
+    let mut player = HockeyPlayer {
+        name: String::from("Bryan Rust"),
+        number: 17,
+        position: HockeyPosition::Wing,
+        goals_ytd: 7,
+    };
+
+    player.shoot_puck(1000);
+    player.shoot_puck(900);
+
+    println!("{} has scored {} goals this season",
+        player.name,
+        player.goals_ytd,
+    );
+}
+```
+
+Se puede observar en el anterior codigo utilizando &mut self se puede alterar el valor del struct.
+
+

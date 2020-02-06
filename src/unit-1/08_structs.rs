@@ -1,5 +1,8 @@
 enum HockeyPosition {
-  Wing(u8)
+  Center,
+  Wing,
+  Defense,
+  Goalie,
 }
 
 // attributed struct
@@ -20,7 +23,7 @@ fn main() {
     let mut player = HockeyPlayer {
       name: String::from("Cristian Ippolito"),
       number: 23,
-      position: HockeyPosition::Wing(4),
+      position: HockeyPosition::Wing,
       goals_ytd: 7
     };
 
@@ -33,9 +36,10 @@ fn main() {
       player.goals_ytd
     );
 
-    let cock = Clock::Analog {
+    let clock = Clock::Analog {
       hours: 9,
       minutes: 25,
       seconds: 9 
     };
+
 }

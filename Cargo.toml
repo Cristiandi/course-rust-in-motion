@@ -9,43 +9,31 @@ edition = "2018"
 # Here's an example of a TOML "array of tables" section, in this case specifying
 # a binary target name and path.
 [[bin]]
-name = "fn-01-birthday"
-path = "src/fn-01-birthday.rs"
+name = "variables"
+path = "src/unit-1/03_variables.rs"
 
 [[bin]]
-name = "fn-02-square"
-path = "src/fn-02-square.rs"
+name = "data-types"
+path = "src/unit-1/04_data-types.rs"
 
 [[bin]]
-name = "fn-03-discount"
-path = "src/fn-03-discount.rs"
+name = "functions"
+path = "src/unit-1/05_functions.rs"
 
 [[bin]]
-name = "loop-demo"
-path = "src/loop-demo.rs"
+name = "control-flow"
+path = "src/unit-1/06_control-flow.rs"
 
 [[bin]]
-name = "while-demo"
-path = "src/while-demo.rs"
+name = "enums"
+path = "src/unit-1/07_enums.rs"
 
 [[bin]]
-name = "for-demo"
-path = "src/for-demo.rs"
+name = "sturcts"
+path = "src/unit-1/08_structs.rs"
 
 [[bin]]
-name = "match-demo"
-path = "src/match-demo.rs"
-
-[[bin]]
-name = "match-demo-02"
-path = "src/match-demo-02.rs"
-
-[[bin]]
-name = "enum-demo"
-path = "src/enum-demo.rs"
-
-[[bin]]
-name = "struct-demo"
-path = "src/struct-demo.rs"
+name = "methods"
+path = "src/unit-1/08_structs.rs"
 
 [dependencies]
