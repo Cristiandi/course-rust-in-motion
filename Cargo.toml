@@ -34,6 +34,6 @@ path = "src/unit-1/08_structs.rs"
 
 [[bin]]
 name = "methods"
-path = "src/unit-1/08_structs.rs"
+path = "src/unit-1/09_methods.rs"
 
 [dependencies]
