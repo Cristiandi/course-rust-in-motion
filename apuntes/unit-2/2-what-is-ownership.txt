@@ -1,0 +1,22 @@
+----------------------------
+VIDEO 2 -> What is ownership
+----------------------------
+Ownership es una estragia de Rust para manejar data en memoria y prevenir errores comunes. Cada fragmento de memoria debe tener 
+una variable que sea el propietario de la memoria, el propietario es responsable de limpiar esa data, esta limpieza sucede
+automaticamente cuando la variable del propietario queda fuera de alcance, el dueño de la data es tambien responsable de
+decidir si esa data es mutable o no.
+
+limpiar la memoria cuando se ha terminado es importante, de esta manera el programa no utiliza más del espacio del sistema
+que el necesario.
+
+Rust trata de mezclar las mejores cosas entre garbage collectar y memory management el concepto de Ownership en rust brinda
+el control sobre la asignación de memoria lo cual da rendimiento pero limpia la data automaticamente cuando el propietario
+queda fuera de alcance, esto significa que no podemos estropear el acceso a la memoria y no usaremos la memoria más de lo 
+necesario.
+
+por defecto con los tipos no primitivos Rust mueve el ownership, si tenemos la variable S guardando un String y creamos una
+nueva variable T y asignamos S a T, esto movera el ownership del string de S a T, despues de eso, la variable S no queda 
+disponible para ser utilizada.
+
+Que pasa si se necesita mantener el ownership de la data pero tambien es necesario transferir ese ownership a otra parte del
+código, eso se puede hace mediante la clonacion, esto hace una copia profunda de la memoria asinada

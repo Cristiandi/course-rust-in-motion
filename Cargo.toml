@@ -36,4 +36,9 @@ path = "src/unit-1/08_structs.rs"
 name = "methods"
 path = "src/unit-1/09_methods.rs"
 
+[[bin]]
+name = "ownership"
+path = "src/unit-2/02_ownership.rs"
+
+
 [dependencies]
