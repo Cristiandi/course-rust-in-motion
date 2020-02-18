@@ -19,4 +19,17 @@ nueva variable T y asignamos S a T, esto movera el ownership del string de S a T
 disponible para ser utilizada.
 
 Que pasa si se necesita mantener el ownership de la data pero tambien es necesario transferir ese ownership a otra parte del
-código, eso se puede hace mediante la clonacion, esto hace una copia profunda de la memoria asinada
+código, eso se puede hace mediante la clonacion, esto hace una copia profunda de la memoria asinada.
+
+Cuando sucede un eror con este enunciado "use of moved value <var_name>" significa que el fragmento de memoria ya no le 
+pertenece a <var_name> esto significa que su ownership cambio, ese ese fragmento de memoria sera limpiado.
+
+Importante para borrowing, no se puede mover un valor mientras esta en borrowed (prestado).
+
+El codigo de 02_ownership.rs se ve dificil porque en Rust el concepto de ownership es una paradigma diferente a que se esta
+acostumbredo de otros lenguajes, Rust tiene primer objetivo el performance, lo cual descarta tener con gabage collector
+como en la mayoria de lenguajes de alto nivel, pero aun así, Rust no nos deja la carga de memory management, Rust tiene un 
+enfoque diferente, ayuda a manejar la memoria utilizando el concepto de ownership, lo cual previene bugs limpiandola cuando
+el owner sale del alcance.
+
+Rust te hace consciente del rendimiento al hacer operaciones lentas, como la clonación, explícita.
