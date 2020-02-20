@@ -1,5 +1,5 @@
 ----------------------------
-VIDEO 2 -> What is ownership
+VIDEO 2 -> What is ownership?
 ----------------------------
 Ownership es una estragia de Rust para manejar data en memoria y prevenir errores comunes. Cada fragmento de memoria debe tener 
 una variable que sea el propietario de la memoria, el propietario es responsable de limpiar esa data, esta limpieza sucede
@@ -32,4 +32,5 @@ como en la mayoria de lenguajes de alto nivel, pero aun así, Rust no nos deja l
 enfoque diferente, ayuda a manejar la memoria utilizando el concepto de ownership, lo cual previene bugs limpiandola cuando
 el owner sale del alcance.
 
-Rust te hace consciente del rendimiento al hacer operaciones lentas, como la clonación, explícita.
+Rust te hace consciente del rendimiento al hacer operaciones lentas, como la clonación, explícita. 
+El beneficio de trabajar dentro del sistema de ownership es que se obtiene control sobre el rendimiento mientras mantiene la

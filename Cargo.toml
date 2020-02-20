@@ -40,5 +40,9 @@ path = "src/unit-1/09_methods.rs"
 name = "ownership"
 path = "src/unit-2/02_ownership.rs"
 
+[[bin]]
+name = "borrowing"
+path = "src/unit-2/04_borrowing.rs"
+
 
 [dependencies]

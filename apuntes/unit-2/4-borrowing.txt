@@ -1,0 +1,36 @@
+----------------------------
+VIDEO 2 -> Borrowing
+----------------------------
+Borrowing en Rust es una manera de permitir que un codigo utilice algún valor (espacio en memoria) sin seder el ownership,
+una manera de indicar el borrowing es utilizando el & (ampersand) antes de type name.
+
+Porque es bueno utilizar Borrowing? la principal razon es el performance, si una funcion no necesita el ownership de un valor
+que tiene memoria asignada, en lugar de clonar ese valor y darselo a la función, se le puede dar a la función una referencia
+de el valor original la función puede tomar prestado ese valor y no necesita una asignación adicional en memoria.
+
+"For example, pretend that the Person struct had 10 fields and the congratulate function only needed to use one of them. If we
+had to clone the whole Person instance in order to pass it to a function that only uses part of it, we would be wasting the memory
+space needed to store the cloned instance, and we'd be wasting time making the clone. With borrowing, no cloning of anything is 
+necessary."
+
+Borrowing es tambien una seña de intención.
+
+Las referencias que se utilizan para el concepto de borrowing son seguras a diferencia de otros lenguajes como C y C++ el borrow
+checker se asegura en tiempo de compilacion que nunca se tenga una referencia invalida, osea, una referencia que no apounta a nada
+o invalida en memoria, esto previene muchos bugs, como por ejemplo -> undefined is not a function in JavaScript es un error causado
+por una referencia invalida.
+
+"function's return type containsa borrowed value,but there is no value for it to be borrowed from" -> significa que se esta 
+intentando prestar un valor, pero, la variabel que tiene el ownership de ese valor salio de alcance, por tanto ese valor, no existe
+
+En general, no puede devolver una referencia de una función que apunte a algo que se creó dentro de esa función, porque esta, fuera
+del alcance  y por tanto se limpiara al finalizar la ejecucion de la funcion.
+
+Borrowing -> es una forma de prestar un valor, en lugar de transferir la propiedad para permitir que otro código use el valor.
+
+Rust utiliza préstamos para reducir las asignaciones, lo cual permite performance y una mejor uso de memoria del codigo.
+
+Borrowing en Rust es menos propenso al error que utilizar punteros, debido a que Rust siempre se asegura de que la referencia
+al valor sea valida.
+
+En general, tener funciones que hagan borrow de los valores en vez de tomar el ownership es una solución más idiomatica.
