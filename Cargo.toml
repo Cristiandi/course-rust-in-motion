@@ -44,5 +44,9 @@ path = "src/unit-2/02_ownership.rs"
 name = "borrowing"
 path = "src/unit-2/04_borrowing.rs"
 
+[[bin]]
+name = "slices"
+path = "src/unit-2/05_slices.rs"
+
 
 [dependencies]

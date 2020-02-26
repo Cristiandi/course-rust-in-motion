@@ -1,0 +1,18 @@
+----------------------------
+VIDEO 5 -> Slices
+----------------------------
+Slice en Rust es un tipo de dato que siempre presta data creada / perteneciente  por / a otra estructura de datos, un Slice
+se compone de un apuntador y un tamaño, el apuntador / pointer es la referencia del principio de la data que el Slice
+contiene y el tamaño / lenght es el número de elementos despues del principio que el Slice contiene.
+
+Se crea un Slice utilizando un ampersand (&), la variable que se esta referenciando y corchetes que contienen un rango.
+
+Como en las referencias planas el borrow checker se asegura de que los Slices sean siempre válidos, en tiempo e ejecución
+Rust emitira panic y parara el programa, si es que los indices del Slice estan fuera de limite, esto previene usos invalidos
+de la memoria.
+
+En general es mejor utilizar Slices o String Slices como parametros de las funciones y/o los metodos, en lugar de prestar
+un Vector, Array o String.
+
+El uso de Slices como parámetros hace que las funciones sean más flexibles, y cómo el rasgo Deref y la coerción deref se combinan
+para hacer que los Slices sean ergonómicos para usar en situaciones comunes.

@@ -1,0 +1,25 @@
+----------------------
+Video 6 -> Borrowing and mutability
+-----------------------------------
+Para crear referencia mutables solo hace falta agregar el keyword mut despues del ampersand.
+
+Otra manera manera común de como las referencias mutables son utilizadas, como el primer parametro de los metodos como
+&mut self de esta manera el metodo puede modificar la instancia actual, además de esta manera no es necesario una referencia
+mutable explicita con &mut cuando se llama el metodo, Rust crea automaticamente la referencia para el parametro self y sabe
+como hacerlo mutable tambien.
+
+
+El compilador aplica algunas reglas que involucran referencias mutables:
+- puede tener cualquier número de referencias inmutables a un valor o una única referencia mutable a ese valor.
+
+cannot borrow `list` as mutable because it is also borrowed as immutable -> este error hace referencia a que se estan
+teniendo dos referencias una mutable y otra inmutable.
+
+
+Cuando tiene un mutable borrow, uno de los aspectos de la estructura de datos del vector que podría cambiar es el
+puntero a los datos del montón.
+
+Si el vector se ha llenado a su capacidad y se llama push para agregar un nuevo valor la implemetación de push puede que necesite
+añadir más memoria y cambiar el puntero a que apunte a un nuevo punto en memoria. 
+
+This particular bug is called iterator invalidation and is a problem in many languages, but not in Rust.
