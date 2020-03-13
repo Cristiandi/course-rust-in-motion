@@ -1,0 +1,46 @@
+----------------------
+Video 7 -> Borrowing code patterns
+----------------------------------
+Patrones de codigo comunes debido a las reglas de borrowing en Rust:
+ - New scopes
+ - Temporary variables
+ - Entry API
+ - Splitting up structs
+
+"At the same time" -> en la mayoria de de los casos cuando se dice "borrows happen at the same time" eso significa que 
+se encuentra en el mismo scope lexico creado por las llaves {}.
+
+Es posible crear references / borrows mutable e inmutables en el mismo scope siempre y cuando la referencia mutable sea 
+creada antes que las referencias inmutables, pero, en el futuro de Rust sera posible tener una referencia mutable despues 
+haber declarado n referencias inmutables.
+
+New scopes
+En este momento para realizar el uso de una referencia mutable luego de haber declaro n referencias inmutables, se puede
+utilizar un inner scope, lo cual simplemente encapsular esas referencias inmutables y su uso en llaves.
+
+Temporary variables
+Al que no puede suceder es que un borrow immutable pase al mismo tiempo que un borrow mutable, para esto se implementan 
+variables temporales que puedan almacenar el valor de uno de los borrows para que este "muera" y poder continuar.
+Causes borrow to end when result is computed -> Hace que el préstamo finalice cuando se calcula el resultado.
+
+Entry API
+Este método abstrae los condicionales que manejan si la clave está presente o ausente, y en su lugar expone métodos para
+personalizar qué hacer en esos casos.
+The entry method toma una llave y retorna una instancia de Entry enum, Entry enum tiene dos variantes Occupied o Vacant
+The or_insert metodo en Entry va a retornar una referencia mutable, que para la variante Occupied se refiere al valor
+existente y para la variante Vacant insertara el valor dado y luego devolvera una referencia mutable del valor ahorta
+existente.
+
+Splitting up structs
+Se trata de partir una estructura grande en estructuras pequeñas con el objetivo de hace borrowing mutable de los 
+atributos requeridos
+
+Algunos de los patrones anteriormente descritos pueden cambiar debido a un nuevo ffeature que se esta desarrollando en Rust
+llamado Non-Lexical Lifetimes (NLL), este feature le da nuevas capacidades al borrow checker, como por ejemplo
+no requerir que siempre un borrow debe durar hasta el final de un scope lexico (}).
+
+Otra capacidad que obtendra el borrow checker es que por ejemplo no se necesario tranferir el ownership a una variable 
+temporal, para que muera el borrowing ya que uso de la expresion moriria el borrowing.
+
+Otra mejora sera que el borrow checker entienda cuando los pestamos no se usan een todos los casos de un if o un match
+
