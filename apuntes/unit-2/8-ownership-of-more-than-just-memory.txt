@@ -1,0 +1,39 @@
+---------------------------------------------
+Video 8 -> Ownership of more than just memory
+---------------------------------------------
+El concepto de Ownership no solo aplica para el manejo de la memoria, si no tambien para redes de sockets, ademas
+sirve para implementar el rasgo Drop cuando los tipos se salen de alcance.
+
+Un socket es un recurso del sistema que es una conexión a un endpoint de la red para enviar y recibir datos.
+Un tipo de sokect el el TCP (Transmission Control Protocol), para utilicer un socket TCP en código, es necesario
+crearlo y bindiarlo en un puerto particular y al terminar se deberia cerrar el socket para prevenir la sobre cargar 
+de sockets del sistema.
+
+La manera en la que los sockets deben de ser manejados es similar a la manera en la que la memoria debe de ser manejada
+ambos tienen problemas similares, como se ha observado con la memoria, es un error usas memoria luego de des asignarla,
+de la misma manera es un error tratar de enviar o recibir data despues de haber cerrado el socket. trata de liberar 
+memoria dos veces causa un error llamado "double free", tratar de cerrar un socket dos veces es tambien un error.
+Las pérdidas de memoria que pueden abrumar el sistema suceden si olvida liberar memoria. Olvidarse de cerrar los sockets
+tambien puede sobre cargar el sistema.
+
+En lenguajes con recolecto de basura, como por ejemplo JS, el recolector de basura ayuda a mitigar problemas relacionados
+al manejo de la memoria, pero, manejar sockets, se mantiene como una tarea manual, por el otro lado Rust ayuda a mitigar
+problemas de ambos aspectos, atravez de mismo concepto / mecanismo OWNERSHIP.
+
+Los sockets no son el unico tipo en l libreria estandar que son manenajados con el concepto de Ownership:
+-Mutex<T>
+Significa mutual exclusion, es un tipo de datos utilizado en contextos multiproceso para garantizar que solo un subproceso
+pueda modificar el valor dentro del mutex.
+Esto se realiza mediante la adquisición de un lock justo antes de modificar el valor. despues de modificar el valor es 
+necesario liberar el bloqueo para permitir que otros hilos lo adquieran. en Rust, cuando el owner del lock sale de alcance
+automaticamente se libera, esto evita olvidar accidentalmente liberar un bloqueo.
+-Rc<T>
+Significa reference counted, es un tipo de dato que permite tener multiples dueños / owners de una sola pieza de data,
+el tiene un contador interno de cuantos dueños tiene cuando el ultimo owner sale de alcance es valor es limpieado,
+decrementar el contador referencia cuando cada uno de los owners salen de alcance es automaticamente manejado por Rust.
+-File
+Son similares a los sokects y deben ser cerrados una vez se termine el uso de las mismos, Rust tambien maneja automaticamente
+el cerrado, cuando el owner del file sale de alcance.
+
+El Drop trait tiene un metodo tambien llamado drop, este metodo toma una referencia a self sin otro parametro, ahí es donde
+pondría cualquier lógica necesaria para limpiar los recursos que usa un tipo.
