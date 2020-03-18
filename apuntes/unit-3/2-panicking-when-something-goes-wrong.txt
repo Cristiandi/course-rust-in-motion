@@ -1,0 +1,16 @@
+-----------------------------------------------
+Video 8 -> Panicking when something goes wrong
+-----------------------------------------------
+Panicking es como tener un botón de emergencia que para pa ejecución del programa, lo cual previene que el programa continue
+con basuta que puede ser incorrecta o peligrosa.
+
+Se puede llamar el macro panic!() en cualquier parte el código, si no se especifica ningún mensaje, el mensaje por defecto sera
+"thread 'main' panicked at 'explicit panic'", cuando se le especifica un mensaje a esta funcion/metodo se le puede enviar argumentos
+como si se tratara de println!.
+
+Un ejemplo muy importante de cuanto utilizar panic es out-of-bounds memory access, lo cual significa que se desea acceder a un
+espacio en memoria que no existe debido a que no ha sido creado, esto es muy importante para prevenir una vulneravilidad de 
+seguridad llamada buffer overread.
+
+Hay un aspecto que se debe tener muy en cuenta cuando se invoca panic! y es que no hay manera de mantener o recuperar la ejecución
+del programa.
