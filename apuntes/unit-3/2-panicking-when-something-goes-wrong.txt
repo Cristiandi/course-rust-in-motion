@@ -14,3 +14,14 @@ seguridad llamada buffer overread.
 
 Hay un aspecto que se debe tener muy en cuenta cuando se invoca panic! y es que no hay manera de mantener o recuperar la ejecución
 del programa.
+
+Un momento en el que no se debe hacer panic! es cuando una falla es un ocurrencia normal dada la operación que se este haciendo.
+A pesar de estas pautas, siempre puede elegir entrar en pánico antes de decidir cómo manejar los errores, luego puede buscar llamadas
+al pánico para actualizar su código de manejo de errores más adelante. (control de exepciones)
+
+unreachable! -> Esto es útil para indicar al compilador que es imposible llegar a cierto punto en el código.
+unimplemented! -> Es util para indicar que se comenzo a trabajar en nuevo feature, pero que este todavia no ha sido implementado.
+assert! -> Recibe un valor boleano y si es faso entra en panico.
+assert_eq! -> Recibe dos valores y entra en panico si no son iguales.
+assert_ne! -> Recibe dos valores y entra en panico si son iguales.
+
