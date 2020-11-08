@@ -1,3 +1,5 @@
+#[derive(Debug)]
+
 pub struct Player {
   score: i32
 }
@@ -21,4 +23,6 @@ fn main() {
   // use a temp varaible to hold the inmutable reference
   let old_score = player1.score();
   player1.set_score(old_score + 1);
+
+  println!("Player 1 score {}", player1.score());
 }

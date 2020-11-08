@@ -8,6 +8,7 @@ fn open_socket_for_five_seconds() {
 }
 
 fn main() {
+    println!("opening socket for five seconds");
     open_socket_for_five_seconds();
     println!("Back in main");
     thread::sleep(Duration::from_secs(5));

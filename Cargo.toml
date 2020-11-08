@@ -8,6 +8,9 @@ edition = "2018"
 
 # Here's an example of a TOML "array of tables" section, in this case specifying
 # a binary target name and path.
+
+# init 1
+
 [[bin]]
 name = "variables"
 path = "src/unit-1/03_variables.rs"
@@ -36,6 +39,8 @@ path = "src/unit-1/08_structs.rs"
 name = "methods"
 path = "src/unit-1/09_methods.rs"
 
+# unit 2
+
 [[bin]]
 name = "ownership"
 path = "src/unit-2/02_ownership.rs"
@@ -47,6 +52,18 @@ path = "src/unit-2/04_borrowing.rs"
 [[bin]]
 name = "slices"
 path = "src/unit-2/05_slices.rs"
+
+[[bin]]
+name = "borrowing-and-mutability"
+path = "src/unit-2/06_1_borrowing_and_mutability.rs"
+
+[[bin]]
+name = "borrowing-code-patterns"
+path = "src/unit-2/07_5_splitting_up_structs.rs"
+
+[[bin]]
+name = "ownership-of-more-than-just-memory"
+path = "src/unit-2/08_1_drop_trait.rs"
 
 
 [dependencies]

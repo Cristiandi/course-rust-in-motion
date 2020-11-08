@@ -13,7 +13,7 @@ had to clone the whole Person instance in order to pass it to a function that on
 space needed to store the cloned instance, and we'd be wasting time making the clone. With borrowing, no cloning of anything is 
 necessary."
 
-Borrowing es tambien una seña de intención.
+Borrowing es tambien una señal de intención.
 
 Las referencias que se utilizan para el concepto de borrowing son seguras a diferencia de otros lenguajes como C y C++ el borrow
 checker se asegura en tiempo de compilacion que nunca se tenga una referencia invalida, osea, una referencia que no apounta a nada
