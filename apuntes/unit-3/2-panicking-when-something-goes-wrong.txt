@@ -10,14 +10,20 @@ como si se tratara de println!.
 
 Un ejemplo muy importante de cuanto utilizar panic es out-of-bounds memory access, lo cual significa que se desea acceder a un
 espacio en memoria que no existe debido a que no ha sido creado, esto es muy importante para prevenir una vulneravilidad de 
-seguridad llamada buffer overread.
+seguridad llamada buffer overread. C por ejemplo retornanara felizmente memoria que no pertenece a la actual estructura de datos
+y eso es un punto de entrada para muchos exploits.
 
 Hay un aspecto que se debe tener muy en cuenta cuando se invoca panic! y es que no hay manera de mantener o recuperar la ejecución
 del programa.
 
-Un momento en el que no se debe hacer panic! es cuando una falla es un ocurrencia normal dada la operación que se este haciendo.
+Otro momento en el que no se debe hacer panic! es cuando una falla es un ocurrencia normal dada la operación que se este haciendo.
 A pesar de estas pautas, siempre puede elegir entrar en pánico antes de decidir cómo manejar los errores, luego puede buscar llamadas
-al pánico para actualizar su código de manejo de errores más adelante. (control de exepciones)
+al pánico para actualizar su código de manejo de errores más adelante. (control de exepciones).
+
+Un momento donde no se deberia hacer panic! es cuando una falla es una ocurrencia normal dada la operación que se esta haciendo.
+
+A persar de las pautas, siempre se puede elegir usar panic! antes de decidir como manejar los errores, luego, se puede buscar esas llamadas
+a panic! para actualizar el codigo y hacerlo compatible con el manejo de errores.
 
 unreachable! -> Esto es útil para indicar al compilador que es imposible llegar a cierto punto en el código.
 unreachable! -> Es util para indicar que se comenzo a trabajar en nuevo feature, pero que este todavia no ha sido implementado.

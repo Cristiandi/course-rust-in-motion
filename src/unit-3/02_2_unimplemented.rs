@@ -25,4 +25,5 @@ fn main() {
   // A call that will go into the first match arm so you can see what it looks like to encounter
   // an unimplemented call
   take_action(DoorState::Opened, DoorAction::Close);
+  take_action(DoorState::Closed, DoorAction::Open);
 }

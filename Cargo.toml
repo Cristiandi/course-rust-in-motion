@@ -65,5 +65,17 @@ path = "src/unit-2/07_5_splitting_up_structs.rs"
 name = "ownership-of-more-than-just-memory"
 path = "src/unit-2/08_1_drop_trait.rs"
 
+# unit 3
+
+[[bin]]
+name = "panicking-when-something-goes-wrong"
+path = "src/unit-3/02_2_unimplemented.rs"
+
+[[bin]]
+name = "handling-results-and-options"
+path = "src/unit-3/03_3_parsing_json.rs"
 
 [dependencies]
+serde = "1.0.117"
+serde_json = "1.0.59"
+serde_derive = "1.0.117"

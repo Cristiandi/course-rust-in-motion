@@ -1,0 +1,16 @@
+---------------------------------------
+Video 3 -> Handling results and options
+---------------------------------------
+Que se debe de hacer cuando se obtiene un Result o Option retornado del llamado de una funcion o un metodo, utilizar el valor producido 
+con exito o recuperar en caso de falla.
+
+Result type es un enum definido por la libreria estandar, tiene dos variantes, cuando una funcion o metodo retorna un valor de tipo Result
+lo que significa es que si todo estuvo bien, se obtendra la variante Ok del Result con el valor adentro, sin ambargo si algo estuvo mal
+se obtendra la variante Err del Result, con un valor que adentro que describe mas sobre que fue lo que ocurrio mal y porque.
+
+Option type es similar a Result denido a que los dos tiene dos variantes, en lugar de representar el exito y el fracaso como lo hace Result, 
+las variantes de Option representan los conceptos de tener algo o no tener nada. Si una funcion retorna un valor de tipo Option, obtendra 
+una variante Some, con un valor adentro, o una variante None sin ningún valor porque no habia nada que devolver.
+
+Una vez que se tiene un Result o un Option, si se tiene valor dentro de la variante Ok de Result o dentro de la variante Some de Option, no
+se puede utilizar directamente como si fuese solo el valor, lo tipos no coinciden.
