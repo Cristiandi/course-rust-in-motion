@@ -75,6 +75,10 @@ path = "src/unit-3/02_2_unimplemented.rs"
 name = "handling-results-and-options"
 path = "src/unit-3/03_3_parsing_json.rs"
 
+[[bin]]
+name = "writing-a-function-that-returns-a-result-and-using-the-question-mark-operator"
+path = "src/unit-3/04_2_use_q_mark_main.rs"
+
 [dependencies]
 serde = "1.0.117"
 serde_json = "1.0.59"

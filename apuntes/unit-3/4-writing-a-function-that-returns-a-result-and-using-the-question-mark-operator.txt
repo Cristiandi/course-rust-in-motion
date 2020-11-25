@@ -1,0 +1,4 @@
+---------------------------------------
+Video 4 -> 
+---------------------------------------
+La palabra reservada 'statict en el contexto de parametro significa una referencia que se mantiene válida para toda la duración del programa
