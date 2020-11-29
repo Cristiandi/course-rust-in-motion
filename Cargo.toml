@@ -79,6 +79,10 @@ path = "src/unit-3/03_3_parsing_json.rs"
 name = "writing-a-function-that-returns-a-result-and-using-the-question-mark-operator"
 path = "src/unit-3/04_2_use_q_mark_main.rs"
 
+[[bin]]
+name = "advantages-of-rusts-error-handling-strategy"
+path = "src/unit-3/05_1_using_expect.rs"
+
 [dependencies]
 serde = "1.0.117"
 serde_json = "1.0.59"
