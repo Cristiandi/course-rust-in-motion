@@ -1,4 +1,18 @@
 ---------------------------------------
 Video 4 -> 
 ---------------------------------------
-La palabra reservada 'statict en el contexto de parametro significa una referencia que se mantiene válida para toda la duración del programa
+El question mark ? utilizado para obtener el valor de una función, la cual tiene que retornar un Result es utilizado para propagar errores de
+una manera consisa, lo cual quiere decir que al utilizar el question mark, para una función que retorne un Result, este intentara obtener el
+valor positivo, que para el caso del Result es un Ok() de no se así, obtendra un valor negativo el cual es un Err().
+
+No se puede utilizar el question mark en una función no retorne un Result.
+
+Cuando recién se implemento el uso del question mark, solo se podia utilizar para instancias del enum Result, pero, despues de la versionde Resut 1.22
+ya se podia utilizar para inancias del enum Option tambien.
+
+Despues de la version 1.26, se puede utilizar el question mark en la funciones main (antes de esto main no podia retornar un valor), antes de esta version
+no habia manera de hacer esto, más que utilizar match para manejar el resultado de la función que se estaba llamando en la función main
+
+Antes de que el question mark fuera implementado se hacia uso de la macro try! la cual comple el mismo proposioto que el del question mark.
+
+La palabra reservada 'statict en el contexto de parametro significa una referencia que se mantiene válida para toda la duración del programa.
