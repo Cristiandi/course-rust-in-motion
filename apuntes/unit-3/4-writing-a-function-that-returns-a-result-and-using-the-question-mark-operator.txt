@@ -1,5 +1,5 @@
 ---------------------------------------
-Video 4 -> 
+Video 4 -> Writing a function that returns a result and using the question mark operator
 ---------------------------------------
 El question mark ? utilizado para obtener el valor de una función, la cual tiene que retornar un Result es utilizado para propagar errores de
 una manera consisa, lo cual quiere decir que al utilizar el question mark, para una función que retorne un Result, este intentara obtener el
