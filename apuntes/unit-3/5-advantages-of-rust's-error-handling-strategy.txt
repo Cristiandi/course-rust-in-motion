@@ -1,3 +1,67 @@
 ---------------------------------------
 Video 5 -> Advantages of Rust's error handling strategy
 ---------------------------------------
+Con los errores o bugs, las ventajas incluyen fallar fuerte, rápido y cerca de la causa, y documentar y hacer cumplir las 
+suposiciones que el código ha hecho y debe ser cierto para que funcione.
+
+Con los errores recuperables, las ventajas incluyen saber la posibilidad de errores del sistema de tipos y el compilador
+se asegura de que no se olvide de manejar los errores.
+
+Siempre las decisiones de ingenieria tienen trade-offs, por eso tambien hay desventajas en el Rust's error handling strategy
+estas afectan el flujo de desarrollo y pueden ser complicadas de manejar cuando hay multiples tipos de errores.
+
+Primero hay que hacer la diferencia entre los bugs y los recoverable errors, se ha hablado de panic! y Result, panics son 
+para situaciones que indican un mal estado desde el cual no hay manera de recuperar o un bug que deberia de solucionarlo un
+programador. Results, son para situaciones que se esperan sucedan en alguna ocasión, donde el programa podria tomar acción 
+para recuperarse, posiblemente con la ayuda del usuario final del programa, en lugar de necesitar cambiar el código del
+programa.
+
+Muchos otros lenguajes de programación utilizan el mismo mecanismo, para manejar ambos bugs y recoverable errors, pero, en
+realidad son situaciones distintas y merecen un trato independiente.
+
+Rust crea un manejo adecuado en panic! y Result si usa el que mejor se adapta a la situación.
+
+Failing loudly significa que tu programa encuentra un problema y te lo deja saber de una manera obvia.
+Failing silently es lo opuesto, tu programa continua, sin ninguna manera en la que te diga que algo esta mal.
+
+En una compración entre programás uno escrito en Rust y otro en C, donde ambos tienen el mismo bug "leer una vez se ha 
+terminado la estructura de datos", mejor conocido como "buffer overread", para este casso el progra hecho en Rust compila sin
+problemas, pero, una vez se ejecuta este programa se lanza un panic diciendo "index out of bounds", eso es un Failing loudly,
+por el contrario el programa en C compila y se ejecuta sin decir nada y solo imprime un resultado inesperado e incorrecto, eso es
+Failing silently.
+
+La ventaja del Failing loudly es que los fallos se van a presentar más en las etapas de desarrollo y pruebas y no en producción.
+
+En esta comparación tambien se ve el significado de fail fast, una vez le pedimos al programa en Rust que ejecute una operación
+invalida, este se detiene, todo lo contrario ocurré en el programa hecho en C.
+
+Los expliots toman ventaja de un programa que continua con mala data, para hacer que otros programas hagan algo que no deberia
+de hacer, el usuo generalizado de panics en la libreria estandar de Rust y en el ecosistema, no le dan esta oportunidad de los
+hackers.
+
+Además relacionado con faling fast esta el faling close, cuando se hace debug, toma más tiempo saber donde esta el error, si se
+tiene que hacer trace atravez de mucho codigo, por el lado de Rust cuando un programa entre en panic sera mucho más facil saber
+el porque debido a que el panic ocurré justo donde el problema pasó.
+
+Usar panic! para hacer cumplir las expectativas puede atrapar bugs, existe un metodo que aplica para los Options y los Results
+el cual se llama expect, este tiene un comportamiento similar al de un match, si el valor evaluado es Ok o Some, retorna el 
+valor interno, pero, si el valor es Error o None genera un panic! con el mensaje dado como argumento, esto sirve cuando se esta
+casi seguro de que la operación sucedera o producirá un valor, la espectativa documenta esa suposición de uno, si alguna vez
+falla esa suposición, se obtiene un Failing loudly.
+
+Hablando de las desventajas, cuando uno no esta bien seguro de lo que se esta creando o de cuales son todas las operaciones que
+debe de realizar una función, puede ser molesto verse obligado que operaciones pueden fallar, de que manera y que se debe de 
+hacer al respecto.
+
+Se puede decir que en lenguajes como ruby es más facil prototipar, pero, se tienen más errores en producción, mayor posibilidad
+de olvidar casos extremos y en algunos casos nunca se descrubre porque el código no se comporta correctamente, porque es dificil
+ver esto cuando uno no esta manejando fallas que pasan.
+
+"Cuando estoy iniciando un programa en Rust, hago un uso liberal de esperar posponer el pensamiento sobre los errores de inmediato,
+pero descubrí que saber dónde pueden ocurrir los errores y animarme a manejar los errores correctamente ha hecho que mi código
+funcione mejor en producción."
+
+Otra de las desventajas es que pueden existir funciones que ejecuten operaciones que pueden resultar en multiples tipos de
+errores, por ejemplo hay una funcion que tiene la posibilidad de retornar un Result con el error type de env::VarError o 
+num::ParseIntError, lo que se hace es pornerle a la funcion el error type ??? pero, manejar este tipo de funciones puede ser
+problematico.
