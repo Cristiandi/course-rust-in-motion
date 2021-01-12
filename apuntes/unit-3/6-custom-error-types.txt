@@ -1,0 +1,35 @@
+-----------------------------
+Video 6 -> Custom error types
+-----------------------------
+Usar custom error types, es la solución para manejar alguna función que puede fallar de varias maneras o con un multi type 
+error, cuando se esta utilizando el custom error type, se necesita implementar el Error trait, ademas implementar el From
+trait va a permitir usar el question mark -> ? el cual sirve para propagar los errores.
+
+Box<Error> es la sulución mas simple al problema del retorno de multiples tipos de errores en una función, Box<Error> es
+un trait object, un trait object consiste en un puntero, para este caso es el tipo Box, el cual apunta a la data en el heap
+y un trait en este caso es trait Error de la libreria estandar, lo que este type / tipo significa es que la función va a
+retornar algun tipo que implementa el Error trait, pero, el programa no conoce el tipo concreto que se va retornar hasta el 
+run time.
+
+El Error trait, necesita de Debug y Display traits, lo que significa que el error value retornado por esta funcion, sera algo
+que se va a poder imprimir.
+
+Para una aplicación con una capa exterior que maneja todos los errores mediante la impresión de estos errores en pantalla
+Box<Error> es todo lo que se necesitaria.
+
+La principal desventaj de utilizar Box<Error> es que el codigo que llame a la funcion que este retornando el Box<Error>
+no puede el tipo actual que fue retornado y usar esa información para hacer algo diferente, si ese es el caso, es donde 
+se debe utilizar el custom error type.
+
+Para implementar un custom error type, se puede utilizar un struct o un enum, es mucho más común utilizar un enum, porque
+es mas sencillo que los callers de estas funciones usen un match para distinguir entre un diferentes errores.
+
+Los custom error types deben tener el Error trait implementado, desde la versión 1.27 de rust no es necesario añadir la 
+definición con un metodo de descripción, el Error trait tambien requiere Display y Debug traits.
+
+El From trait es para convertir un tipo en otro tipo, sive para muchas situaciones, la situación aquí es que el question
+mark operator ->  ? va a buscar un la impletación de From trait para convertir un Error de un tipo en el tipo de error 
+retornado, entonces esta impletación del From trait se hace para convertir el io::Error en un DocumentServiceError.
+
+Usar el Result type alias sirve cuando muchas funciones estan implementando el custom error type como el tipo de error que
+pueden retornar en este caso el DocumentServiceError, sirve pare reducir la repetición de esta declaración.
