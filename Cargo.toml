@@ -87,7 +87,16 @@ path = "src/unit-3/05_1_using_expect.rs"
 name = "custom-error-types"
 path = "src/unit-3/06_1_using_custom_error_type.rs"
 
+[[bin]]
+name = "error-handling-crates"
+path = "src/unit-3/07_2_failure.rs"
+
 [dependencies]
 serde = "1.0.117"
 serde_json = "1.0.59"
 serde_derive = "1.0.117"
+quick-error = "=1.2.2"
+error-chain = "=0.12.0"
+backtrace = "=0.3.18"
+failure = "=0.1.5"
+failure_derive = "=0.1.5"
