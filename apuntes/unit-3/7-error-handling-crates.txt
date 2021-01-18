@@ -1,0 +1,31 @@
+--------------------------------
+Video 7 -> Error handling crates
+--------------------------------
+Los Error handling crates son librerias que ayudan a facilitar y a agregar complejidad al manejo de errores.
+
+La libreria quick-error provee la funcionalidad con una macro, ademas ya implementa el Error trait, lo que significa
+que en caso de tener la implementación escrita, esta se puede borrar, lo mismo sucede con el Display trait y el From
+trait, algo interesante con esta libreria es que se puede añadir un comportarmiento el codigo para obtener el 
+contexto del error (en este ejemplo esto es util para saber el arrchivo con el se presento un error) mediante el 
+el llamado de context().
+
+La libreria error-chain, tambien provee la funcionalidad con una macro, libreriaya implementa el trait Display,
+From y Error ademas tambien se puede añadir el contexto, ademas tambien se puede obtener el backtrace, el cual es
+opcional porque un error, puede que no tenga un backtrace, el backtrace solo se puede capturar, cuando la variable
+de ambiente RUST_BACKTRACE tiene un valor diferente de 0, esto puede ayudar mucho para saber porque y donde se esta
+generando el error.
+
+La libreria failure, al igual que las anteriores tambien provee la funcionalidad con una macro, tambien provee
+el Error trait, el Display trait, tambien tiene backtrace support.
+
+Entonces cual de estas librerias deberia de utiliza en un proyecto? - eso dependera de que features se necesitan
+y como uno le gustaria trabajar con las librerias, aquí una lista de los aspectos de cada libreria
+
+quick-error
+Macro: regular, Display implementation: true, From conversions: true, Backtraces: false
+
+error-chain
+Macro: regular, Display implementation: true, From conversions: true, Backtraces: true
+
+error-chain
+Macro: derive, Display implementation: true, From conversions: false, Backtraces: true
