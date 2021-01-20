@@ -1,0 +1,32 @@
+----------------------------------------------
+Video 8 -> Useful methods on result and option
+----------------------------------------------
+Existing los testing methods por el lado del Result tenemos: is_ok y is_error, en del Option tenemos: is_some y is_none
+Estos metodos son utiles cuando cuando se quiere saber que variante se tiene (Ok value o Error) pero no quiere o no 
+puede probar cuáles son los valores dentro de las variantes, estos tests pueden ser asserts en pruebas automatizadas 
+o condiciones usadas en el flujo de control, estos metodos no deberia de ser usados en combinación con unwrap (este
+metodo retorna el inner value de un Result o un Option), lo cual seria un anti-patron, revisar si un valor es Ok o Some
+para luego obtener el inner value en caso de ser así, la manera correcta de hacer esto seria utilizar match, if let.
+
+Para convertir un Result en un Option, se puede utilizar el ok method, si se llama ok en un Ok value, se va obtener la
+variante Some manteniendo el mismo valor, si se llama ok en un Err value, se obtendra la variante None y el valor dentro
+del error sera desechado, para convertir un Option en un Result, se puede utilizar el metodo ok_or, si se llama ok_or en
+un Some value, se obtendra la variante Ok con el mismo valor que Some tenia, cuando se convierte de Result a Option se 
+pierde la información del error lo que significa convertir de Opción a Resultado, necesitamos agregar información - el
+valor de error al que Ninguno debería corresponder, ese es el argumento de ok_or, si el valor es None, llamando ok_or
+retornara el argumento dentro de la variante Err.
+
+Se pueden especificar Fallbacks values mediante el uso del metodo unwrap_or, si se llama en Ok o en Some, unwrap_or
+extrae el valor de la variante y así se puede utilizar ese valor, si se llama en Error o None, unwrap_or retorna el
+Fallback value especificado como argumento, el uso de este metodo pudiera aplicar para cuando se este utilizando un
+Match con el objetivo de tener un Fallback value, este match se podria sustituir por el uso del metodo unwrap_or, 
+tambien es posible tener una implementación más corta haciendo uso del metodo unwrap_or_default, el cual no recibe un
+argumento, pero siempre usa el default value, este metodo hace uso de la funcionalidad definida por el Default trait
+y por lo demas tiene el mismo comportamiento que unwrap_or, entonces si el tipo dentro de Ok deriva o implementa el 
+Default trait, se puede utilizar el unwrap_or_default.
+
+Transformando el Ok/Some value, es posible gracias al metodo map, el cual es util cuando se quiere hacer una 
+operación en el valor en Ok o Some, pero, dejar los valores Err o None sin modificaciones, osea map realiza una operacion
+siempre que el valor sea positivo para un Result o Option, pero, no hace nada cuando el valor es negativo, hay muchos
+metodos como map, que hacen casi lo mismo, los cuales pueden ayudar a remplazar algunas cosas que se esten haciendo a 
+mano con los match para tratar con Result/Option.
