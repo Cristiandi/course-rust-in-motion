@@ -91,6 +91,10 @@ path = "src/unit-3/06_1_using_custom_error_type.rs"
 name = "error-handling-crates"
 path = "src/unit-3/07_2_failure.rs"
 
+[[bin]]
+name = "useful-methods-on-result-and-option"
+path = "src/unit-3/08_3_map_trans_ok_or_some.rs"
+
 [dependencies]
 serde = "1.0.117"
 serde_json = "1.0.59"
