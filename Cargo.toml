@@ -95,6 +95,11 @@ path = "src/unit-3/07_2_failure.rs"
 name = "useful-methods-on-result-and-option"
 path = "src/unit-3/08_3_map_trans_ok_or_some.rs"
 
+# unit 4
+[[bin]]
+name = "an-exploration-of-concrete-lifetimes"
+path = "src/unit-4/02_0_reference_to_a_vector.rs"
+
 [dependencies]
 serde = "1.0.117"
 serde_json = "1.0.59"
