@@ -1,0 +1,23 @@
+-----------------------------------------------
+Video 2 -> An exploration of concrete lifetimes
+-----------------------------------------------
+
+Concrete life time of value significa en Rust es el tiempo en el cual un valor particular existe en una dirección 
+particular de memoria, esto se puede ver como una analogia de las casas donde uno ha vivido, por ejemplo cuando uno nace
+vive en una casa, seguramente, con el tiempo uno se mueve de casa, si alguien lo va a visitar a uno en la casa donde 
+uno nacio, es muy posible que uno ya no este ahí.
+
+Concrete lifetimes fo references, resulta que las referencias son valores, por lo que la definición del inicio y el
+final de la vida útil de una referencia es la misma que para los valores. Dura desde que la referencia es creada o 
+movida a un sitio en memoria y termina cuando la referencia es movida o eliminada. de cualquier manera hay un constraint
+adicional con las referencias, la cual es, la vida util de una referencia debe de estar incluida dentro de la vida util
+del valor al que se hace referencia. Este constraint se asegura de que toda referencia apunte a un valor valido.
+
+Siempre que un valor sale de scope, el valor es limpiado.
+
+Siempre el lifetime de la referencia debe de ser menor que el lifetime del valor que esta referenciando.
+
+El lifetime tambien se puede ver determinado por los inner scopes, por ejemplo si una variable es declara en un inner
+scope, no podria se utilizada fuera de ese scope, debido a que afuera no existiria su lifetime.
+
+El borrow checker analiza los lifetimes concretos en cada llamado y los conecta con los lifetimes en la funcion.
